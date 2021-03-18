@@ -1,3 +1,11 @@
+import argparse
+import random
+import itertools
+import os
+import tempfile
+import warnings
+warnings.filterwarnings("ignore")
+
 from awesome_align.tokenization_bert import BasicTokenizer
 
 def main():
