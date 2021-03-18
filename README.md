@@ -15,6 +15,22 @@ python setup.py install
 
 Inputs should be *tokenized* and each line is a source language sentence and its target language translation, separated by (` ||| `). You can see some examples in the `examples` folder.
 
+### Modification
+
+*tokenized* seems an underspecification. Since, Multilingual Cased BERT is used, we should try to follow its tokenization thoroughly?
+
+Here is an example of converting a file arranged in the required format, but with *raw* sentences to the pre-tokenized version that can be consumed for extracting alignments below.
+
+```
+python pre_tokenize.py --data_file examples/ab.src-tgt --output_file ab.pretokenized.src-trg
+```
+
+The output can also be directed to stdout, as below:
+
+```
+python pre_tokenize.py --data_file examples/ab.src-tgt > examples/ab.pretokenized.src-trg
+```
+
 ### Extracting alignments
 
 Here is an example of extracting word alignments from multilingual BERT:
