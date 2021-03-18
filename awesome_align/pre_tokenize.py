@@ -15,6 +15,7 @@ def main():
         "--data_file", default=None, type=str, required=True, help="The input data file (a text file)."
     )
   
+  args = parser.parse_args()
   file_path=args.data_file
   
   # Default Arguments for Cased Multlingual
