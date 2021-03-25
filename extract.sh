@@ -1,4 +1,4 @@
-DATA_FILE=../DeEn/ende.txt
+DATA_FILE=./ende.txt
 MODEL_NAME_OR_PATH=bert-base-multilingual-cased
 OUTPUT_FILE=./deen.out
 

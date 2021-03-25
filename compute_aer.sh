@@ -1,1 +1,1 @@
-python aer.py ../DeEn/alignmentDeEn.talp deen.out --oneRef
+python aer.py alignmentDeEn.talp deen.out --oneRef
