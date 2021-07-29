@@ -17,6 +17,7 @@
 
 
 import argparse
+import copy
 import random
 import itertools
 import os
@@ -27,6 +28,7 @@ warnings.filterwarnings("ignore")
 import numpy as np
 import torch
 from tqdm import trange
+import torch.nn as nn
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import DataLoader, Dataset, SequentialSampler
 
@@ -83,6 +85,18 @@ class LineByLineTextDataset(Dataset):
     def __getitem__(self, i):
         return self.examples[i]
 
+def delete_encoding_layers(model, final_layer=8):
+    oldModuleList = model.bert.encoder.layer
+    newModuleList = nn.ModuleList()
+
+    for i in range(0, final_layer):
+        newModuleList.append(oldModuleList[i])
+
+    copyOfModel = copy.deepcopy(model)
+    copyOfModel.bert.encoder.layer = newModuleList
+
+    return copyOfModel        
+
 def word_align(args, model: PreTrainedModel, tokenizer: PreTrainedTokenizer):
 
     def collate(examples):
@@ -98,6 +112,7 @@ def word_align(args, model: PreTrainedModel, tokenizer: PreTrainedTokenizer):
     )
 
     model.to(args.device)
+    model = delete_encoding_layers(model)
     model.eval()
     tqdm_iterator = trange(dataset.__len__(), desc="Extracting")
     with open(args.output_file, 'w') as writer:
