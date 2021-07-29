@@ -164,7 +164,7 @@ class BertTokenizer(PreTrainedTokenizer):
         self,
         vocab_file,
         do_lower_case=True,
-        do_basic_tokenize=True,
+        do_basic_tokenize=True, # this will not hurt since lowercasing and accent stripping is not done
         never_split=None,
         unk_token="[UNK]",
         sep_token="[SEP]",
@@ -348,7 +348,7 @@ class BertTokenizer(PreTrainedTokenizer):
 class BasicTokenizer(object):
     """Runs basic tokenization (punctuation splitting, lower casing, etc.)."""
 
-    def __init__(self, do_lower_case=True, never_split=None, tokenize_chinese_chars=True):
+    def __init__(self, do_lower_case=False, never_split=None, tokenize_chinese_chars=True):
         """ Constructs a BasicTokenizer.
 
         Args:
