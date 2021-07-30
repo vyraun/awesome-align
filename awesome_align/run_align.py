@@ -54,7 +54,7 @@ class LineByLineTextDataset(Dataset):
         print('Loading the dataset...')
         self.examples = []
         with open(file_path, encoding="utf-8") as f:
-            for idx, line in enumerate(f.readlines()):
+            for idx, line in enumerate(tqdm(f.readlines())):
                 if len(line) == 0 or line.isspace() or not len(line.split(' ||| ')) == 2:
                     raise ValueError(f'Line {idx+1} is not in the correct format!')
                 
