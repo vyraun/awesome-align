@@ -115,7 +115,7 @@ def word_align(args, model: PreTrainedModel, tokenizer: PreTrainedTokenizer):
     model.to(args.device)
     model = delete_encoding_layers(model)
     model.eval()
-    tqdm_iterator = trange(dataset.__len__(), desc="Extracting alignments...\n")
+    tqdm_iterator = trange(dataset.__len__(), desc="Extracting alignments")
     with open(args.output_file, 'w') as writer:
         for batch in dataloader:
             with torch.no_grad():
