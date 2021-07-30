@@ -27,6 +27,7 @@ warnings.filterwarnings("ignore")
 
 import numpy as np
 import torch
+from tqdm import tqdm
 from tqdm import trange
 import torch.nn as nn
 from torch.nn.utils.rnn import pad_sequence
