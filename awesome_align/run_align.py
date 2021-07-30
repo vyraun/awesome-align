@@ -52,7 +52,7 @@ def set_seed(args):
 class LineByLineTextDataset(Dataset):
     def __init__(self, tokenizer: PreTrainedTokenizer, args, file_path):
         assert os.path.isfile(file_path)
-        print('Loading the dataset...')
+        print('Loading dataset...')
         self.examples = []
         with open(file_path, encoding="utf-8") as f:
             for idx, line in enumerate(tqdm(f.readlines())):
@@ -115,7 +115,7 @@ def word_align(args, model: PreTrainedModel, tokenizer: PreTrainedTokenizer):
     model.to(args.device)
     model = delete_encoding_layers(model)
     model.eval()
-    tqdm_iterator = trange(dataset.__len__(), desc="Extracting")
+    tqdm_iterator = trange(dataset.__len__(), desc="Extracting alignments...\n")
     with open(args.output_file, 'w') as writer:
         for batch in dataloader:
             with torch.no_grad():
