@@ -66,8 +66,12 @@ class LineByLineTextDataset(Dataset):
                 src, tgt = line.split(' ||| ')
                 
                 if src.rstrip() == '' or tgt.rstrip() == '':
-                    raise ValueError(f'Line {idx+1} Either Source or Target is Empty')
-            
+                    print(f'Line {idx+1} Either Source or Target is Empty.')
+                    if src.rstrip() == '':
+                        src = "------------------------------"
+                    if tgt.rstrip() == '':
+                        tgt = "------------------------------"
+                                    
                 sent_src, sent_tgt = src.strip().split(), tgt.strip().split()
                 token_src, token_tgt = [tokenizer.tokenize(word) for word in sent_src], [tokenizer.tokenize(word) for word in sent_tgt]
                 wid_src, wid_tgt = [tokenizer.convert_tokens_to_ids(x) for x in token_src], [tokenizer.convert_tokens_to_ids(x) for x in token_tgt]
