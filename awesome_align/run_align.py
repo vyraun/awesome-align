@@ -51,23 +51,29 @@ def set_seed(args):
 
 class LineByLineTextDataset(Dataset):
     def __init__(self, tokenizer: PreTrainedTokenizer, args, file_path):
+        
         assert os.path.isfile(file_path)
         print('Loading dataset...')
         self.examples = []
+        
         with open(file_path, encoding="utf-8") as f:
+            
             for idx, line in enumerate(tqdm(f.readlines())):
+                
                 if len(line) == 0 or line.isspace() or not len(line.split(' ||| ')) == 2:
-                    raise ValueError(f'Line {idx+1} is not in the correct format!')
+                    raise ValueError(f'Line {idx+1} is either of length 0 or has only white-spaces or splitting on ||| failed.')
                 
                 src, tgt = line.split(' ||| ')
+                
                 if src.rstrip() == '' or tgt.rstrip() == '':
-                    raise ValueError(f'Line {idx+1} is not in the correct format!')
+                    raise ValueError(f'Line {idx+1} Either Source or Target is Empty')
             
                 sent_src, sent_tgt = src.strip().split(), tgt.strip().split()
                 token_src, token_tgt = [tokenizer.tokenize(word) for word in sent_src], [tokenizer.tokenize(word) for word in sent_tgt]
                 wid_src, wid_tgt = [tokenizer.convert_tokens_to_ids(x) for x in token_src], [tokenizer.convert_tokens_to_ids(x) for x in token_tgt]
 
                 ids_src, ids_tgt = tokenizer.prepare_for_model(list(itertools.chain(*wid_src)), return_tensors='pt', max_length=tokenizer.max_len)['input_ids'], tokenizer.prepare_for_model(list(itertools.chain(*wid_tgt)), return_tensors='pt', max_length=tokenizer.max_len)['input_ids']
+                
                 if len(ids_src[0]) == 2 or len(ids_tgt[0]) == 2:
                     raise ValueError(f'Line {idx+1} is not in the correct format!')
 
