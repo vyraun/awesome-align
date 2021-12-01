@@ -2,13 +2,19 @@
 
 `awesome-align` is a tool that can extract word alignments from multilingual BERT (mBERT) [[Demo]](https://colab.research.google.com/drive/1205ubqebM0OsZa1nRgbGJBtitgHqIVv6?usp=sharing) and allows you to fine-tune mBERT on parallel corpora for better alignment quality (see [our paper](https://arxiv.org/abs/2101.08231) for more details).
 
-### Dependencies
+### Dependencies and End to End Example
 
 First, you need to install the dependencies:
 
 ```bash
 pip install -r requirements.txt
 python setup.py install
+```
+
+Then run:
+
+```
+bash extractv2.sh examples/sample.en examples/sample.de
 ```
 
 ### Input format
