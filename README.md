@@ -21,6 +21,12 @@ Then run inside the repo's directory:
 bash extractv2.sh examples/sample.en examples/sample.de
 ```
 
+The above script does pretokenization as well, if you don't want to pre-tokenize:
+
+```
+bash extractv3.sh examples/sample.en examples/sample.de
+```
+
 ### Input format
 
 Inputs should be *tokenized* and each line is a source language sentence and its target language translation, separated by (` ||| `). You can see some examples in the `examples` folder.
