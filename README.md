@@ -4,6 +4,10 @@
 
 ### Dependencies and End to End Example
 
+```
+git clone https://github.com/vyraun/awesome-align.git
+```
+
 First, you need to install the dependencies:
 
 ```bash
@@ -11,7 +15,7 @@ pip install -r requirements.txt
 python setup.py install
 ```
 
-Then run:
+Then run inside the repo's directory:
 
 ```
 bash extractv2.sh examples/sample.en examples/sample.de
