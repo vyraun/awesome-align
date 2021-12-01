@@ -35,6 +35,10 @@ python pre_tokenize.py --data_file examples/ab.src-tgt > examples/ab.pretokenize
 
 Here is an example of extracting word alignments from multilingual BERT:
 
+`bash extract.sh`
+
+Or
+
 ```bash
 DATA_FILE=/path/to/data/file
 MODEL_NAME_OR_PATH=bert-base-multilingual-cased
