@@ -25,7 +25,8 @@ align_file.close()
 f = open("token-token.align", "w")
 for i in range(len(alignments)):
     for pair in alignments[i]:
-        f.write("{} - {}\t".format(src[i][pair[0]-1], trg[i][pair[1]-1]))
+        f.write("{} - {}\t".format(src[i][pair[0]], trg[i][pair[1]]))
     f.write("\n")
+    break
 
 f.close()
